@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Chats
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item (click)="IrAChat()">
+      <ion-avatar slot="start"> <!-- Colocar el avatar al inicio -->
+        <img src="https://picsum.photos/id/64/200/200" />
+      </ion-avatar>
+      <ion-label>
+        <h2>Usuario Cualquiera</h2>
+        <p>Último mensaje: Hola, ¿cómo estás?</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <div class="title-container">
+        <ion-avatar>
+          <img src="https://picsum.photos/id/64/200/200" /> <!-- Imagen por defecto -->
+        </ion-avatar>
+        <span>Usuario Cualquiera</span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="chat-messages">
+    <div class="message left">
+      <p>Hola, ¿cómo estás?</p>
+    </div>
+
+    <div class="message right">
+      <p>Todo bien, ¿y tú?</p>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-item>
+      <ion-input placeholder="Escribe un mensaje..."></ion-input>
+      <ion-button (click)="goBack()" slot="end">Enviar</ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

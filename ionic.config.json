@@ -1,0 +1,8 @@
+{
+  "name": "3DMatch",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "0655f741"
+}

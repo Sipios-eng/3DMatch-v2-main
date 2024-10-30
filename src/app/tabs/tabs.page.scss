@@ -1,0 +1,14 @@
+ion-tab-button {
+    ion-icon {
+      color: #4b1c71; /* Color para tabs no seleccionadas */
+      transition: color 0.2s ease-in-out; /* Transición suave de 0.3 segundos */
+    }
+    &.tab-selected ion-icon {
+      color: #b57edc; /* Color para la tab seleccionada */
+      transition: color 0.2s ease-in-out; /* Transición suave de 0.3 segundos */
+    }
+  }
+
+ion-tab-button {
+    --ripple-color: #b57edc; /* Cambia el color del ripple, por ejemplo a morado */
+}

@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="FormularioRegistro">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nombre de Usuario</ion-label>
+      <ion-input  type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" (click)="Registrarse()">Registrarse</ion-button>
+
+    <ion-button expand="full" color="medium" (click)="goBack()">Volver</ion-button>
+  </div>
+</ion-content>

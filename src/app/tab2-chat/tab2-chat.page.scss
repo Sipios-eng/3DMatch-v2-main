@@ -1,0 +1,42 @@
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .message {
+    padding: 10px;
+    border-radius: 15px;
+    max-width: 70%;
+    margin-bottom: 10px;
+  }
+  
+  .left {
+    align-self: flex-start;
+    background-color: #f0f0f0;
+  }
+  
+  .right {
+    align-self: flex-end;
+    background-color: #d1e7dd;
+    color: #000;
+  }
+  
+  ion-footer {
+    --background: #fff;
+    padding: 10px;
+  }
+
+  .title-container {
+    display: flex;
+    align-items: center;  // Alinear el avatar y el texto verticalmente en el centro
+  }
+  
+  ion-avatar {
+    margin-right: 10px;  // Separar el avatar del texto con un margen
+  }
+  
+  span {
+    font-size: 20px;  // Ajustar el tamaño del texto si es necesario
+    font-weight: bold;  // Hacer el texto más prominente si lo deseas
+  }

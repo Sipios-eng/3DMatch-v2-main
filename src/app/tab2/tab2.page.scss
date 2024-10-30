@@ -1,0 +1,15 @@
+ion-item {
+    display: flex;
+    align-items: center;  // Asegurar que el avatar y el texto estén alineados verticalmente
+  }
+  
+  ion-label {
+    margin-left: 10px;  // Añadir un margen para separar el avatar del texto
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  // Centrar el texto verticalmente en la misma línea que el avatar
+  }
+  
+  h2, p {
+    margin: 0;  // Eliminar márgenes adicionales del h2 y p
+  }

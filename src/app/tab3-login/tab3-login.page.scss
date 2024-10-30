@@ -1,0 +1,28 @@
+.FormularioLogin{
+    padding: 20px;
+  }
+  
+  ion-item {
+    margin-bottom: 20px;
+  }
+  
+  ion-button {
+    margin-top: 20px;
+    --background: #b57edc;
+    --color: #fff0ff;
+  }
+  .botonSecundario {
+    --background: #7f4ca5;
+    --color: #fff0ff;
+  }
+  ion-content {
+    height: 100%;
+  }
+  
+  .FormularioLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  

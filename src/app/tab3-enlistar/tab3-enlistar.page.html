@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create Listing</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="submitListing()">Submit</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="listingForm" (ngSubmit)="submitListing()">
+    <ion-item>
+      <ion-label position="stacked">Service Title</ion-label>
+      <ion-input type="text" formControlName="title" placeholder="Enter service title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-textarea formControlName="description" placeholder="Describe your service"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Price ($)</ion-label>
+      <ion-input type="number" formControlName="price" placeholder="Enter price"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Location</ion-label>
+      <ion-input type="text" formControlName="location" placeholder="Enter your location"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Upload Image</ion-label>
+      <input type="file" (change)="onFileSelected($event)">
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="listingForm.invalid">Create Listing</ion-button>
+  </form>
+</ion-content>
