@@ -37,4 +37,8 @@ export class AuthService {
       throw error;
     }
   }
+  
+  getUser(){
+    return this.afAuth.user;
+  }
 }

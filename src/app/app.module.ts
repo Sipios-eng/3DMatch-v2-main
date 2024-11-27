@@ -13,6 +13,8 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -22,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    AngularFirestoreModule,
      // Asegúrate de tener esto
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
