@@ -54,5 +54,11 @@ export class LoginComponent {
     }
   }
 
+  logout(){
+    this.authService.logout();
+    alert("sesion cerrada")
+    this.navCtrl.navigateRoot('/tabs/tab1');
+  }
+
   ngOnInit() {}
 }
