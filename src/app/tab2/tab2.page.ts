@@ -11,9 +11,6 @@ export class Tab2Page {
 
   constructor(private navCtrl: NavController,private animationCtrl: AnimationController) {}
 
-  IrAChat() {
-    this.navCtrl.navigateForward('/tab2-chat');  // Redirigir a la página del chat
-  }
 
   ionViewWillEnter() {
     this.animateMessages();

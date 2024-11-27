@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
 export interface Pin{
@@ -16,10 +16,14 @@ export interface Pin{
 })
 export class PinesService {
   private collectionName="pins";
-  constructor(private firestore:AngularFirestoreModule) { }
+  constructor(private firestore:AngularFirestore) { }
 
-  addCar(pin:Pin): Promise<void> {
+  addPin(pin:Pin): Promise<void> {
     const id = this.firestore.createId();
-    return this.firestore.collection<Pin>(this.collectionName).doc(id).set(...pin,id)
+    return this.firestore.collection<Pin>(this.collectionName).doc(id).set({...pin,id}) //si no funciona elim <pin>
+  }
+
+  getPin():Observable<Pin[]>{
+    return this.firestore.collection<Pin>(this.collectionName).valueChanges();
   }
 }
