@@ -8,6 +8,17 @@
 
 <ion-content [fullscreen]="true">
 
-    <div id="map" style="height: 100%;"></div>
+  <div id="map" style="height: 100vh; width: 100%;"></div>
+
+  <!-- Botón flotante "+" para abrir el formulario -->
+  <button (click)="toggleForm()" class="floating-button">
+    +
+  </button>
+  
+  <!-- Formulario para agregar un pin -->
+  <div *ngIf="showForm">
+    <app-pines></app-pines> <!-- Componente Pines para mostrar el formulario -->
+  </div>
+  
 
 </ion-content>

@@ -8,6 +8,8 @@ export interface Pin{
   region:string;
   imageUrl:string;
   desc:string;
+  latitude: number;
+  longitude: number;
 
 }
 

@@ -12,6 +12,8 @@ declare var google: any;  // Declarar la variable global de Google Maps
 export class Tab1Page implements OnInit {
   username: string = 'Invitado';
   userEmail: string = '';
+  showForm: boolean = false;
+  
 
   constructor(private route: ActivatedRoute) {}
 
@@ -55,5 +57,8 @@ export class Tab1Page implements OnInit {
         zoom: 16,
       });
     }
+  }
+  toggleForm() {
+    this.showForm = !this.showForm; // Alterna la visibilidad del formulario
   }
 }

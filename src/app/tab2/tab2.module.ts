@@ -6,7 +6,6 @@ import { Tab2Page } from './tab2.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
-import { PinesComponent } from '../components/pines/pines.component';
 @NgModule({
   imports: [
     IonicModule,
@@ -15,6 +14,6 @@ import { PinesComponent } from '../components/pines/pines.component';
     ExploreContainerComponentModule,
     Tab2PageRoutingModule
   ],
-  declarations: [Tab2Page,PinesComponent]
+  declarations: [Tab2Page]
 })
 export class Tab2PageModule {}
