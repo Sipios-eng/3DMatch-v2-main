@@ -59,6 +59,7 @@ export class Tab1Page implements OnInit {
     }
   }
   toggleForm() {
-    this.showForm = !this.showForm; // Alterna la visibilidad del formulario
+    this.showForm = !this.showForm;
   }
+  
 }

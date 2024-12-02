@@ -14,11 +14,11 @@
   <button (click)="toggleForm()" class="floating-button">
     +
   </button>
-  
+
   <!-- Formulario para agregar un pin -->
-  <div *ngIf="showForm">
+  <div *ngIf="showForm" class="floating-form">
+    <button (click)="toggleForm()" class="close-button">X</button>
     <app-pines></app-pines> <!-- Componente Pines para mostrar el formulario -->
   </div>
-  
 
 </ion-content>
