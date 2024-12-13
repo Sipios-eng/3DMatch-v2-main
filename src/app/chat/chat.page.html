@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let message of messages" [ngClass]="{ 'sent': message.senderId === userId, 'received': message.senderId !== userId }">
+    <p>{{ message.text }}</p>
+  </div>
+</ion-content>
+<app-message-input (sendMessage)="handleSendMessage($event)"></app-message-input>

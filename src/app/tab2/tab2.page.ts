@@ -1,37 +1,25 @@
-import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { AnimationController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  templateUrl: './tab2.page.html',
+  styleUrls: ['./tab2.page.scss']
 })
-export class Tab2Page {
+export class Tab2Page implements OnInit {
+  chats: any[] = [];
 
-  constructor(private navCtrl: NavController,private animationCtrl: AnimationController) {}
+  constructor(private chatService: ChatService) {}
 
-
-  ionViewWillEnter() {
-    this.animateMessages();
-
+  ngOnInit() {
+    // Aquí puedes cargar los chats si tienes una funcionalidad para ello
+    this.chats = [
+      { id: '1', receiverName: 'Usuario 1', lastMessage: 'Hola', timestamp: new Date().toISOString() },
+      { id: '2', receiverName: 'Usuario 2', lastMessage: '¿Qué tal?', timestamp: new Date().toISOString() }
+    ];
   }
 
-  animateMessages() {
-    const itemElements = document.querySelectorAll('ion-item');
-    
-    if (itemElements.length > 0) {  // Verificar que haya mensajes
-      itemElements.forEach((element, index) => {
-        const itemAnimation = this.animationCtrl.create()
-          .addElement(element)
-          .duration(1000)
-          .delay(index * 200)
-          .fromTo('transform', 'translateY(100%)', 'translateY(0)')
-          .fromTo('opacity', '0', '1');
-        
-        itemAnimation.play();
-      });
-    }
+  openChat(chatId: string) {
+    console.log('Abrir chat con ID:', chatId);
   }
-
 }

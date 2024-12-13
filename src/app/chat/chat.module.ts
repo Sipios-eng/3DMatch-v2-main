@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { Tab2Page } from './tab2.page';
+import { ChatPageRoutingModule } from './chat-routing.module';
+import { ChatPage } from './chat.page';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -10,8 +11,9 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     FormsModule,
     IonicModule,
+    ChatPageRoutingModule,
     SharedModule
   ],
-  declarations: [Tab2Page]
+  declarations: [ChatPage]
 })
-export class Tab2PageModule {}
+export class ChatPageModule {}

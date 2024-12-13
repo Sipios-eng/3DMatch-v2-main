@@ -26,6 +26,22 @@ const routes: Routes = [
     path: 'tab3-enlistar',
     loadChildren: () => import('./tab3-enlistar/tab3-enlistar.module').then( m => m.Tab3EnlistarPageModule)
   },
+  {
+    path: 'chat',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule)
+      },
+      {
+        path: ':chatId',
+        loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule)
+      }
+    ]
+  }
+  
+  
+
 ];
 @NgModule({
   imports: [

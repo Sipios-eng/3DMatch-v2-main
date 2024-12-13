@@ -1,44 +1,58 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from 'firebase/compat/app';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private afAuth: AngularFireAuth) {}
+  private userSubject = new BehaviorSubject<User | null>(null);
 
-  // Método para iniciar sesión con correo y contraseña
-  async login(email: string, password: string) {
+  constructor(private afAuth: AngularFireAuth) {
+    // Escuchar cambios en el estado del usuario
+    this.afAuth.authState.subscribe(user => {
+      this.userSubject.next(user as User | null);
+    });
+  }
+
+  // Iniciar sesión con correo y contraseña
+  async login(email: string, password: string): Promise<void> {
     try {
-      return await this.afAuth.signInWithEmailAndPassword(email, password);
+      await this.afAuth.signInWithEmailAndPassword(email, password);
     } catch (error) {
-      console.error('Error en login: ', error);
+      console.error('Error en login:', error);
       throw error;
     }
   }
 
-  // Método para registrarse con correo y contraseña
-  async register(email: string, password: string) {
+  // Registrarse con correo y contraseña
+  async register(email: string, password: string): Promise<void> {
     try {
-      return await this.afAuth.createUserWithEmailAndPassword(email, password);
+      await this.afAuth.createUserWithEmailAndPassword(email, password);
     } catch (error) {
-      console.error('Error en register: ', error);
+      console.error('Error en register:', error);
       throw error;
     }
   }
 
-  // Método para cerrar sesión
-  async logout() {
+  // Cerrar sesión
+  async logout(): Promise<void> {
     try {
       await this.afAuth.signOut();
     } catch (error) {
-      console.error('Error en logout: ', error);
+      console.error('Error en logout:', error);
       throw error;
     }
   }
-  
-  getUser(){
-    return this.afAuth.user;
+
+  // Obtener el estado del usuario autenticado como observable
+  getUserObservable(): Observable<User | null> {
+    return this.userSubject.asObservable();
+  }
+
+  // Obtener el usuario actual (instantáneo, no observable)
+  getCurrentUser(): User | null {
+    return this.userSubject.value;
   }
 }
