@@ -16,7 +16,7 @@
         <!-- API Key for Google Maps -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCgHJec4cfqI9tPenyJlgXta4hjPtWN-js" />
+            android:value="AIzaSyA1fNlOokSY-ge9hcFeDsaQJk-lfpReYzc" />
 
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
