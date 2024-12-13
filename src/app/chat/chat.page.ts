@@ -5,27 +5,38 @@ import { ChatService } from '../services/chat.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.page.html',
-  styleUrls: ['./chat.page.scss']
+  styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
   messages: any[] = [];
   chatId: string = '';
-  userId: string = 'current_user_id'; // Reemplázalo con el ID del usuario actual
+  userId: string = ''; // Agregamos la propiedad userId
+  currentUser: any;
 
   constructor(private route: ActivatedRoute, private chatService: ChatService) {}
 
   ngOnInit() {
-    // Obtener el chatId desde la URL
     this.chatId = this.route.snapshot.paramMap.get('chatId')!;
 
-    // Obtener los mensajes del chat en tiempo real
-    this.chatService.getMessages(this.chatId).subscribe(data => {
-      this.messages = data;
+    // Obtener mensajes del chat
+    this.chatService.getMessages(this.chatId).subscribe((messages: any[]) => {
+      this.messages = messages;
+    });
+
+    // Obtener el usuario actual
+    this.chatService.getCurrentUser().subscribe((user: any) => {
+      this.currentUser = user;
+      this.userId = user?.uid || ''; // Asignar userId desde el usuario actual
     });
   }
 
+  // Método para manejar el envío de mensajes
   handleSendMessage(text: string) {
-    // Enviar el mensaje usando el servicio
-    this.chatService.sendMessage(this.chatId, this.userId, text);
+    if (!text.trim()) return; // Validar que el texto no esté vacío
+    this.chatService.sendMessage(this.chatId, text).then(() => {
+      console.log('Mensaje enviado');
+    }).catch((error) => {
+      console.error('Error al enviar mensaje:', error);
+    });
   }
 }
