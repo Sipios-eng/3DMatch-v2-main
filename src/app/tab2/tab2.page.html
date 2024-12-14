@@ -3,7 +3,30 @@
     <ion-title>Tab 2</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
   <p>Tab 2 works!</p>
-  <app-chat-list [chats]="chats"></app-chat-list>
+
+  <!-- Lista de chats -->
+  <ion-list>
+    <ion-item *ngFor="let chat of chats" (click)="selectChat(chat.id)">
+      <ion-label>
+        <h2>{{ chat.receiverName }}</h2>
+        <p>{{ chat.lastMessage }}</p>
+        <small>{{ chat.timestamp | date: 'short' }}</small>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Formulario para crear un nuevo chat -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Crear Chat</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-input placeholder="Email del Usuario 1" [(ngModel)]="participant1"></ion-input>
+      <ion-input placeholder="Email del Usuario 2" [(ngModel)]="participant2"></ion-input>
+      <ion-button expand="block" (click)="createChat()">Crear Chat</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

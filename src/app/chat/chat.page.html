@@ -7,6 +7,13 @@
 <ion-content>
   <div *ngFor="let message of messages" [ngClass]="{ 'sent': message.senderId === userId, 'received': message.senderId !== userId }">
     <p>{{ message.text }}</p>
+    <small>{{ message.timestamp | date: 'short' }}</small>
   </div>
 </ion-content>
-<app-message-input (sendMessage)="handleSendMessage($event)"></app-message-input>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input placeholder="Escribe un mensaje..." [(ngModel)]="newMessage"></ion-input>
+    <ion-button (click)="sendMessage()">Enviar</ion-button>
+  </ion-toolbar>
+</ion-footer>

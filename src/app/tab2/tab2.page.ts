@@ -8,22 +8,34 @@ import { ChatService } from '../services/chat.service';
 })
 export class Tab2Page implements OnInit {
   chats: any[] = [];
-  currentUser: any;
+  participant1: string = '';
+  participant2: string = '';
 
   constructor(private chatService: ChatService) {}
 
   ngOnInit() {
-    // Prueba manual de datos
-    this.chats = [
-      { id: '1', receiverName: 'Usuario 1', lastMessage: 'Hola', timestamp: new Date().toISOString() },
-      { id: '2', receiverName: 'Usuario 2', lastMessage: '¿Qué tal?', timestamp: new Date().toISOString() },
-    ];
-    console.log('Chats iniciales:', this.chats);
+    this.loadChats();
+  }
 
-    // Obtener usuario actual
-    this.chatService.getCurrentUser().subscribe((user: any) => {
-      this.currentUser = user;
-      console.log('Usuario actual:', this.currentUser);
+  loadChats() {
+    this.chatService.getChats().subscribe((chats) => {
+      this.chats = chats;
+      console.log('Chats cargados:', chats);
     });
+  }
+
+  createChat() {
+    if (this.participant1 && this.participant2) {
+      this.chatService.createChat([this.participant1, this.participant2]).then(() => {
+        console.log('Chat creado');
+        this.participant1 = '';
+        this.participant2 = '';
+      });
+    }
+  }
+
+  selectChat(chatId: string) {
+    // Redirigir al chat seleccionado
+    console.log('Redirigiendo al chat:', chatId);
   }
 }

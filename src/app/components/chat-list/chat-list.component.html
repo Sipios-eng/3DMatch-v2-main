@@ -3,7 +3,7 @@
     <ion-label>
       <h2>{{ chat.receiverName }}</h2>
       <p>{{ chat.lastMessage }}</p>
-      <small>{{ chat.timestamp | date:'short' }}</small>
+      <small>{{ chat.timestamp?.toDate() | date: 'short' }}</small>
     </ion-label>
   </ion-item>
 </ion-list>
