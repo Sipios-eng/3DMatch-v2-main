@@ -18,33 +18,35 @@ export class ChatService {
   }
 
   getChats(): Observable<any[]> {
-    return this.firestore
-      .collection('chats')
-      .valueChanges()
-      .pipe(
-        map((chats: any[]) => {
-          // Agregar lógica para mostrar al usuario contrario
-          return chats.map((chat) => {
-            const currentUserEmail = this.authService.getCurrentUser()?.email;
-            const otherParticipant = chat.participants.find(
-              (email: string) => email !== currentUserEmail
-            );
-            return { ...chat, receiverName: otherParticipant };
-          });
-        })
-      );
+    return this.firestore.collection('chats').valueChanges().pipe(
+      map((chats: any[]) =>
+        chats.map((chat) => ({
+          ...chat,
+          timestamp: chat.timestamp?.toDate() || new Date(), // Conversión de timestamp
+        }))
+      )
+    );
   }
 
   getMessages(chatId: string): Observable<any[]> {
     return this.firestore
       .collection('messages', (ref) => ref.where('chatId', '==', chatId))
-      .valueChanges();
+      .valueChanges()
+      .pipe(
+        map((messages: any[]) =>
+          messages.map((message) => ({
+            ...message,
+            timestamp: message.timestamp?.toDate() || new Date(),
+          }))
+        )
+      );
   }
 
   async sendMessage(chatId: string, text: string): Promise<void> {
     const senderId = this.authService.getCurrentUser()?.uid;
+
     if (!senderId) {
-      throw new Error('Usuario no autenticado.');
+      throw new Error('No se puede enviar el mensaje porque el usuario no está autenticado.');
     }
 
     const messageData = {
@@ -54,15 +56,15 @@ export class ChatService {
       timestamp: new Date(),
     };
 
-    // Agregar mensaje a la colección 'messages' y actualizar último mensaje en 'chats'
-    await this.firestore.collection('messages').add(messageData);
-    await this.firestore.collection('chats').doc(chatId).update({
-      lastMessage: text,
-      timestamp: new Date(),
+    return this.firestore.collection('messages').add(messageData).then(() => {
+      return this.firestore.collection('chats').doc(chatId).update({
+        lastMessage: text,
+        timestamp: new Date(),
+      });
     });
   }
 
-  createChat(participants: string[]): Promise<void> {
+  createChat(participants: string[]): Promise<any> {
     const chatId = this.firestore.createId();
     const chatData = {
       id: chatId,

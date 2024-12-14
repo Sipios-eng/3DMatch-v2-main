@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from '../services/chat.service';
+import { NavController } from '@ionic/angular'; // Import necesario
 
 @Component({
   selector: 'app-chat',
@@ -12,8 +13,8 @@ export class ChatPage implements OnInit {
   messages: any[] = [];
   newMessage: string = '';
   userId: string = ''; // Definir la propiedad userId
-
-  constructor(private route: ActivatedRoute, private chatService: ChatService) {}
+  chatPartnerName: string = '';
+  constructor(private route: ActivatedRoute, private chatService: ChatService,private navCtrl: NavController) {}
 
   ngOnInit() {
     this.chatId = this.route.snapshot.paramMap.get('id')!;
@@ -42,5 +43,8 @@ export class ChatPage implements OnInit {
         this.newMessage = '';
       });
     }
+  }
+  goBack() {
+    this.navCtrl.navigateBack('/tabs/tab2');
   }
 }
